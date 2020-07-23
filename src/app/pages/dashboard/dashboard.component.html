@@ -1,7 +1,8 @@
 <h1>Below are my todos:</h1><br/>
 
-<input type="text" [formControl]="todo" (keyup.enter)="addTodo()">
+<input style="margin-bottom: 48px;" type="text" [formControl]="todo" (keyup.enter)="addTodo()">
 
-
-<app-todo>foo</app-todo>
-<app-todo>bar</app-todo>
+<app-todo *ngFor="let todo of (todos$ | async); index as i;">
+  {{ i + 1 }}. {{ todo.todo }}
+  <button (click)="deleteTodo(todo.id)">Delete</button>
+</app-todo>
