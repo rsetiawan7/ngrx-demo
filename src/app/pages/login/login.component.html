@@ -1,0 +1,21 @@
+<div>
+  <table>
+    <tbody>
+      <tr>
+        <td>Username</td>
+        <td>
+          <input type="text" [formControl]="username">
+        </td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>
+          <input type="password" [formControl]="password">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button style="margin-top: 24px" (click)="login()">
+    Login
+  </button>
+</div>
