@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { TodoModule } from 'src/app/components/todo/todo.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DashboardNgrxModule } from './store/dashboard-ngrx/dashboard-ngrx.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TodoModule,
     FormsModule,
     ReactiveFormsModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    DashboardNgrxModule
   ]
 })
 export class DashboardModule { }
