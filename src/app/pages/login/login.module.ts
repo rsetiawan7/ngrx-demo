@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { LoginNgrxModule } from './store/login-ngrx.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HeaderInterceptor } from './interceptors';
 
 
 @NgModule({
@@ -11,8 +14,13 @@ import { LoginComponent } from './login.component';
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    LoginNgrxModule,
+  ],
+  providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
   ]
 })
 export class LoginModule { }
