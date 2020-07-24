@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginApiService {
+
+  url: string;
+  private readonly endpoint: string = '/auth/login';
+
+  constructor(private http: HttpClient) {
+    this.url = environment.url.concat(this.endpoint);
+  }
+
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(this.url, { username, password });
+  }
+}
