@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { fromRoot } from './pages/store/reducers';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HeaderInterceptor } from './pages/login/interceptors';
+import { LoginModule } from './pages/login/login.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,8 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    LoginModule,
     StoreModule.forRoot(fromRoot.reducers, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot({
@@ -25,7 +30,9 @@ import { EffectsModule } from '@ngrx/effects';
     }),
     EffectsModule.forRoot([])
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
