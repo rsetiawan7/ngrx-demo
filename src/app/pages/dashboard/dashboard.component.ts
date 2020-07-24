@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Todo } from 'src/app/components/todo/models';
 import { DashboardSelector } from './store/selectors';
 import { DashboardAction } from './store/actions';
+import { LoginSelector } from '../login/store/selectors';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +17,7 @@ export class DashboardComponent implements OnInit {
 
   todo: FormControl = new FormControl('');
   todos$: Observable<Array<Todo>>;
+  username$: Observable<string>;
 
   constructor(
     private store: Store<fromDashboard.TodoState>
@@ -23,6 +25,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.todos$ = this.store.select(DashboardSelector.selectAll);
+    this.username$ = this.store.select(LoginSelector.getUsername);
   }
 
   addTodo(): void {
